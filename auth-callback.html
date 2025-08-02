@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Authenticating...</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    // Process OAuth callback
+    (async function() {
+      try {
+        // Check for existing session first
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (session) {
+          await handleSuccessfulAuth(session.user.id);
+          return;
+        }
+
+        // Handle OAuth callback
+        const { data, error } = await supabase.auth.getSessionFromUrl();
+        if (error) throw error;
+        
+        await handleSuccessfulAuth(data.user.id);
+        
+      } catch (error) {
+        console.error('Auth callback error:', error);
+        window.location.href = '/index.html';
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p>Processing authentication, please wait...</p>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FCBS - Available Slots</title>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="sidebar">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-icon">FCBS</div>
+                    <div class="logo-text">Football Court Booking System</div>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link" :class="{'active': currentPage === 'dashboard'}">Available Slots</a>
+                </li>
+                <li class="nav-item">
+                    <a href="unotifications.html" class="nav-link" :class="{'active': currentPage === 'notifications'}">Notifications</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link" :class="{'active': currentPage === 'contact'}">Contact Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link" :class="{'active': currentPage === 'about'}">About</a>
+                </li>
+            </ul>
+            
+            <button class="logout-btn" @click="logout">Logout</button>
+        </div>
+
+  <div class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Available Slots</h1>
+      <p class="page-subtitle">Book your preferred time slot for the football court</p>
+    </div>
+
+    <!-- Available Slots -->
+    <div class="card">
+      <h2 class="section-title">Available Slots</h2>
+      <div class="slots-grid">
+        <div v-if="availableSlots.length === 0" class="empty-state">
+          <div class="empty-state-icon">📅</div>
+          <h3>No available slots</h3>
+          <p>All slots are booked</p>
+        </div>
+
+       <div v-for="slot in availableSlots" :key="slot.id" class="slot-card">
+        <div class="slot-date">{{ formatDate(slot.date) }}</div>
+        <div class="slot-time-range">{{ formatTimeRange(slot.start_time, slot.end_time) }}</div>
+        <div class="slot-availability">Available</div>
+        <button class="btn btn-primary" @click="bookSlot(slot)">Book Slot</button>
+        </div>
+
+        
+      </div>
+    </div>
+
+    <!-- User's Bookings -->
+    <div class="card">
+      <h2 class="section-title">Your Bookings</h2>
+      <div class="bookings-list">
+        <div v-if="userBookings.length === 0" class="empty-state">
+          <div class="empty-state-icon">📭</div>
+          <h3>No bookings yet</h3>
+          <p>Your approved and pending bookings will appear here</p>
+        </div>
+
+        <div v-for="booking in userBookings" :key="booking.id" class="booking-item">
+          <div class="booking-time"><p><b>Date:</b> {{ booking.date }}</p><p><b>Time:</b> {{ booking.time }}</p></div>
+          <div class="status-badge" :class="'status-' + booking.status">
+            {{ capitalize(booking.status) }}
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+        window.supabase = supabase.createClient(
+            'https://uawgdwbkpdazmqqyupwx.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhd2dkd2JrcGRhem1xcXl1cHd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEwNDQxNDksImV4cCI6MjA2NjYyMDE0OX0.HipuiHPZkoUGN52t27ZNKx6vkwNmzLPJ0m7YyRRMvNY'
+        );
+
+  new Vue({
+    el: '#app',
+    data: {
+      currentPage: 'dashboard',
+      availableSlots: [],
+      userBookings: [],
+      userId: null,
+    },
+    methods: {
+      async fetchUser() {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          this.userId = user.id;
+          this.fetchSlots();
+          this.fetchBookings();
+        }
+      },
+        formatDate(dateStr) {
+        const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+        return new Date(dateStr).toLocaleDateString(undefined, options);
+        },
+        formatTimeRange(start, end) {
+            const format = t => t ? t.slice(0, 5) : '';
+            return `${format(start)} - ${format(end)}`;
+        },
+          capitalize(status) {
+        return status.charAt(0).toUpperCase() + status.slice(1);
+        },
+
+      async fetchSlots() {
+        const { data: booked } = await supabase
+          .from('bookings')
+          .select('slot_id');
+
+        const bookedSlotIds = booked.map(b => b.slot_id);
+
+        const { data: slots } = await supabase
+          .from('slots')
+          .select('*')
+          .order('date', { ascending: true });
+
+        this.availableSlots = slots.filter(slot => !bookedSlotIds.includes(slot.id));
+      },
+      async fetchBookings() {
+        const { data: bookings } = await supabase
+          .from('bookings')
+          .select(`
+            id, status, created_at,
+            slots (
+              date,
+              start_time,
+              end_time
+            )
+          `)
+          .eq('user_id', this.userId)
+          .order('created_at', { ascending: false });
+
+        this.userBookings = bookings.map(b => ({
+          id: b.id,
+          status: b.status,
+          date: b.slots?.date || '',
+          time: this.formatTimeRange(b.slots?.start_time, b.slots?.end_time),
+        }));
+      },
+      async bookSlot(slot) {
+        const { error } = await supabase.from('bookings').insert([{
+          user_id: this.userId,
+          slot_id: slot.id,
+          status: 'pending',
+        }]);
+
+        if (error) {
+          alert('Booking failed!');
+        } else {
+          alert('Booking request sent!');
+          this.fetchSlots();
+          this.fetchBookings();
+        }
+      },
+      formatTimeRange(start, end) {
+        if (!start || !end) return '';
+        return `${start.slice(0, 5)} - ${end.slice(0, 5)}`; // Show HH:MM format
+      },
+                async logout() {
+                    try {
+                        const { error } = await supabase.auth.signOut();
+                        if (error) throw error;
+                        window.location.href = '../index.html';
+                    } catch (error) {
+                        console.error('Error logging out:', error);
+                        alert('Failed to logout. Please try again.');
+                    }
+                },
+      capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+    },
+    mounted() {
+      this.fetchUser();
+    }
+  });
+</script>
+
+</body>
+</html>

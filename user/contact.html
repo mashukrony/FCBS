@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCBS - Contact Admin</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Vue CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="sidebar">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-icon">FCBS</div>
+                    <div class="logo-text">Football Court Booking System</div>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link" :class="{'active': currentPage === 'dashboard'}">Available Slots</a>
+                </li>
+                <li class="nav-item">
+                    <a href="unotifications.html" class="nav-link" :class="{'active': currentPage === 'notifications'}">Notifications</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link" :class="{'active': currentPage === 'contact'}">Contact Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link" :class="{'active': currentPage === 'about'}">About</a>
+                </li>
+            </ul>
+            
+            <button class="logout-btn" @click="logout">Logout</button>
+        </div>
+
+        <div class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Contact Admin</h1>
+                <p class="page-subtitle">Get in touch with the football court administrator</p>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">Contact Information</h2>
+<div class="contact-info">
+    <div class="contact-item">
+        <div class="contact-label">Phone Number:</div>
+        <div class="contact-value">{{ contactInfo.phone }}</div>
+        <a :href="'tel:' + contactInfo.phone" class="btn btn-primary" style="
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-top: 8px;
+            transition: background 0.3s;
+        ">Call Now</a>
+    </div>
+    
+    <div class="contact-item">
+        <div class="contact-label">Email:</div>
+        <div class="contact-value">{{ contactInfo.email }}</div>
+        <a :href="'mailto:' + contactInfo.email" class="btn btn-primary" style="
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-top: 8px;
+            transition: background 0.3s;
+        ">Send Email</a>
+    </div>
+    
+    <div class="contact-item">
+        <div class="contact-label">Location:</div>
+        <div class="contact-value">{{ contactInfo.location }}</div>
+        <a :href="contactInfo.mapLink" target="_blank" class="btn btn-primary" style="
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-top: 8px;
+            transition: background 0.3s;
+        ">View on Map</a>
+    </div>
+</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">Operating Hours</h2>
+                <div class="hours-list">
+                    <div class="hours-item" v-for="(hours, day) in operatingHours" :key="day">
+                        <div class="hours-day">{{ day }}:</div>
+                        <div class="hours-time">{{ hours }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                currentPage: 'contact',
+                contactInfo: {
+                    phone: '+60 16-741-0214',
+                    email: 'admin@footballcourt.com',
+                    location: '123 Sports Avenue, Kuala Lumpur, Malaysia',
+                    mapLink: 'https://maps.google.com'
+                },
+                operatingHours: {
+                    'Monday - Friday': '8:00 AM - 10:00 PM',
+                    'Saturday - Sunday': '7:00 AM - 11:00 PM'
+                },
+                message: {
+                    subject: '',
+                    content: ''
+                }
+            },
+            methods: {
+ 
+                logout() {
+                    if (confirm('Are you sure you want to logout?')) {
+                        window.location.href = '../index.html';
+                        alert('Logging out...');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
