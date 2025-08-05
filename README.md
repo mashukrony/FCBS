@@ -16,9 +16,9 @@ A web-based platform for managing football court bookings, admin slots, and user
 📌 Overview
 
 FCBS simplifies football court scheduling by:  
-• Users: Request slots, track bookings, and receive admin notifications.  
-• Admins: Create/manage slots, approve/reject requests, and message users.  
-• Impact: Reduced manual booking errors by 85% and improved slot management efficiency.  
+- Users: Request slots, track bookings, and receive admin notifications.  
+- Admins: Create/manage slots, approve/reject requests, and message users.  
+- Impact: Reduced manual booking errors by 85% and improved slot management efficiency.  
 
 ---
 
@@ -28,29 +28,29 @@ Admin:
 - Password: `admin1234`  
 
 User:  
-• Email: `user11@gmail.com`  
-• Password: `111111`  
+- Email: `user11@gmail.com`  
+- Password: `111111`  
 
 ---
 
 🚀 Features
 User Side
-• View available slots and submit booking requests.  
-• Track request status (pending/accepted/rejected).  
-• Receive admin notifications (e.g., slot confirmations).  
+- View available slots and submit booking requests.  
+- Track request status (pending/accepted/rejected).  
+- Receive admin notifications (e.g., slot confirmations).  
 
 Admin Side
-• CRUD operations for slots (date/time management).  
-• Approve/reject requests with optional messages.  
-• View all confirmed bookings in a centralized dashboard.  
+- CRUD operations for slots (date/time management).  
+- Approve/reject requests with optional messages.  
+- View all confirmed bookings in a centralized dashboard.  
 
 ---
 
 🛠️ Technologies
-• Frontend: Vue.js, JavaScript, HTML/CSS, jQuery  
-• Backend: Slim PHP, JWT Authentication  
-• Database: Supabase (PostgreSQL)  
-• Deployment: Vercel  
+- Frontend: Vue.js, JavaScript, HTML/CSS, jQuery  
+- Backend: Slim PHP, JWT Authentication  
+- Database: Supabase (PostgreSQL)  
+- Deployment: Vercel  
 
 ---
 
@@ -95,9 +95,9 @@ CREATE TABLE notifications (
 ---
 
 📝 Future Improvements  
-• Add payment integration (Stripe/Razorpay).  
-• Implement calendar view for slots.  
-• Enable email notifications (Resend/SendGrid).  
+- Add payment integration (Stripe/Razorpay).  
+- Implement calendar view for slots.  
+- Enable email notifications (Resend/SendGrid).  
 
 
 
