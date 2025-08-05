@@ -14,15 +14,13 @@ A web-based platform for managing football court bookings, admin slots, and user
 
 
 📌 Overview
+
 FCBS simplifies football court scheduling by:  
 • Users: Request slots, track bookings, and receive admin notifications.  
 • Admins: Create/manage slots, approve/reject requests, and message users.  
 • Impact: Reduced manual booking errors by 85% and improved slot management efficiency.  
 
-🎥 Demo Video  
-Embed a video walkthrough:  
 
-(https://youtu.be/SwGQEKTFhVU)
 
 🔑 Test Credentials
 Admin:  
