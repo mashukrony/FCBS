@@ -2,7 +2,12 @@
 A web-based platform for managing football court bookings, admin slots, and user requests.  
 
 (https://fcbs-xi.vercel.app)  
-(https://youtu.be/SwGQEKTFhVU) 
+
+<a href="https://youtu.be/YOUR_VIDEO_ID" target="_blank">
+  <img src="https://img.youtube.com/vi/SwGQEKTFhVU/maxresdefault.jpg" alt="FCBS Demo" style="width:100%; max-width:600px; border-radius:8px;">
+</a>  
+*Click the thumbnail to watch the full demo on YouTube.*  
+
 
 
 📌 Overview
