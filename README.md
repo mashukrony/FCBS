@@ -11,7 +11,7 @@ A web-based platform for managing football court bookings, admin slots, and user
 
 *Click the thumbnail to watch the full demo on YouTube.*  
 
-
+---
 
 📌 Overview
 
@@ -20,7 +20,7 @@ FCBS simplifies football court scheduling by:
 • Admins: Create/manage slots, approve/reject requests, and message users.  
 • Impact: Reduced manual booking errors by 85% and improved slot management efficiency.  
 
-
+---
 
 🔑 Test Credentials
 Admin:  
@@ -30,6 +30,8 @@ Admin:
 User:  
 • Email: `user11@gmail.com`  
 • Password: `111111`  
+
+---
 
 🚀 Features
 User Side
@@ -42,13 +44,15 @@ Admin Side
 • Approve/reject requests with optional messages.  
 • View all confirmed bookings in a centralized dashboard.  
 
+---
+
 🛠️ Technologies
 • Frontend: Vue.js, JavaScript, HTML/CSS, jQuery  
 • Backend: Slim PHP, JWT Authentication  
 • Database: Supabase (PostgreSQL)  
 • Deployment: Vercel  
 
-
+---
 
 🗃️ Database Schema (Supabase)
 ```sql
@@ -88,6 +92,7 @@ CREATE TABLE notifications (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
+---
 
 📝 Future Improvements  
 • Add payment integration (Stripe/Razorpay).  
