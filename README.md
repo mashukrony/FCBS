@@ -51,7 +51,7 @@ Admin Side
 
 
 🗃️ Database Schema (Supabase)
-
+```sql
 -- Slots
 CREATE TABLE slots (
   id SERIAL PRIMARY KEY,
@@ -87,7 +87,7 @@ CREATE TABLE notifications (
   subject TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
-
+```
 
 📝 Future Improvements  
 • Add payment integration (Stripe/Razorpay).  
