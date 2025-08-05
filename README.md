@@ -1,12 +1,14 @@
-#Football Court Booking System (FCBS) ⚽  
+Football Court Booking System (FCBS) ⚽  
 A web-based platform for managing football court bookings, admin slots, and user requests.  
 
-(https://fcbs-xi.vercel.app)  
+## 🌐 Live Website  
+🔗 [fcbs-xi.vercel.app](https://fcbs-xi.vercel.app/)  
+*Click to explore the live Football Court Booking System.*  
 
 <a href="https://youtu.be/YOUR_VIDEO_ID" target="_blank">
   <img src="https://img.youtube.com/vi/SwGQEKTFhVU/maxresdefault.jpg" alt="FCBS Demo" style="width:100%; max-width:600px; border-radius:8px;">
 </a>  
-*Click the thumbnail to watch the full demo on YouTube.*  
+Click the thumbnail to watch the full demo on YouTube.  
 
 
 
