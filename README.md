@@ -1,8 +1,8 @@
 #Football Court Booking System (FCBS) ⚽  
 A web-based platform for managing football court bookings, admin slots, and user requests.  
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live%20Site-green)](https://fcbs-xi.vercel.app)  
-[![Video Demo](https://img.shields.io/badge/Demo-Video%20Walkthrough-blue)](https://youtu.be/SwGQEKTFhVU) 
+(https://fcbs-xi.vercel.app)  
+(https://youtu.be/SwGQEKTFhVU) 
 
 
 📌 Overview
@@ -14,7 +14,7 @@ FCBS simplifies football court scheduling by:
 🎥 Demo Video  
 Embed a video walkthrough:  
 
-[![FCBS Demo Video](https://img.shields.io/badge/Watch-Demo%20Video-red)](https://youtu.be/SwGQEKTFhVU)
+(https://youtu.be/SwGQEKTFhVU)
 
 🔑 Test Credentials
 Admin:  
@@ -22,7 +22,7 @@ Admin:
 - Password: `admin1234`  
 
 User:  
-•  Email: `user11@gmail.com`  
+• Email: `user11@gmail.com`  
 • Password: `111111`  
 
 🚀 Features
@@ -32,8 +32,8 @@ User Side
 • Receive admin notifications (e.g., slot confirmations).  
 
 Admin Side
-•  CRUD operations for slots (date/time management).  
-•  Approve/reject requests with optional messages.  
+• CRUD operations for slots (date/time management).  
+• Approve/reject requests with optional messages.  
 • View all confirmed bookings in a centralized dashboard.  
 
 🛠️ Technologies
@@ -85,8 +85,8 @@ CREATE TABLE notifications (
 
 📝 Future Improvements  
 • Add payment integration (Stripe/Razorpay).  
-•  Implement calendar view for slots.  
-•  Enable email notifications (Resend/SendGrid).  
+• Implement calendar view for slots.  
+• Enable email notifications (Resend/SendGrid).  
 
 
 
